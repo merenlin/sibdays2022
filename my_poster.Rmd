@@ -18,8 +18,8 @@ date: "`r Sys.Date()`"
 output:
   betterposter::poster_better:
     # Optional styling arguments
-    hero_background: "#56B4E9"
-    accent_color: "#005c99"
+    hero_background: "#1071e5"
+    accent_color: "#e81313"
     hero_color: "#FFFFFF"
     logo: "https://yt3.ggpht.com/ytc/AAUvwnjGteYx8k6MAssnCXuvUKVwHYKOlapDEioYv5lGrg=s88-c-k-c0x00ffffff-no-rj"
     # See betterposter::qrcode_options() for help
@@ -74,6 +74,9 @@ references:
 
 ```{css echo=FALSE}
 /* Adjust space at top of #hero (center panel) */
+html {
+  font-size: 32px;
+}
 #hero {
   padding-top: 5%;
 }
@@ -89,10 +92,13 @@ references:
 -->
 
 
-# Pipeline to systematically search for **short tandem repeat (STR) biomarkers** in different medical conditions. Create your own workflow for personalised medicine research with STRs.
+# Pipeline to systematically search for **short tandem repeat (STR) biomarkers** in different medical conditions. 
+
+## Create your own workflow for personalized medicine research with STRs.
 
 ![](https://raw.githubusercontent.com/merenlin/mucin_poster/main/img/main_figure.png)
 
+### Fork the project on github 
 </div>
 
 
@@ -114,8 +120,6 @@ Currently it is unknown whether distinct cancer groups exhibit distinct patterns
 STRs have been poorly studied until very recently due to their highly polymorphic nature which complicates their annotation. Moreover, genotyping and analyzing STR variants involves large amounts of data and working with many different biological data formats. 
 We have developed a pipeline to systematically search for STR biomarkers in colorectal cancer that can be easily adapted for similar studies in other medical conditions. Our pipeline is the first building block towards a workflow for personalised medicine approach through STRs.
  
-![](https://raw.githubusercontent.com/merenlin/mucin_poster/main/img/main_figure.png) [biomarkers and tcga data flowchart]
-
 
 </div>
 
@@ -129,20 +133,20 @@ We have developed a pipeline to systematically search for STR biomarkers in colo
 
 The statistical framework TRAL  (Schaper 2015) have been used to find STRs in human reference genome. We share the logic behind creating a genotyping panel relevant for cancer research and how we arrived at the microsatellite panel we use today. These inferred STRs have been further genotyped on more than 400 genomes from patients with colorectal cancer available to us through the TCGA (The Cancer Genome Atlas Network 2012).
 
-![](https://raw.githubusercontent.com/merenlin/mucin_poster/main/img/main_figure.png) [workflow illustration]
-
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/genotyping_flowchart.png) 
 # Where?
 
 ### REST API
 
  The results are presented as a relational database with programmatic access through a REST-full API, - STR Explorer. Additional Python modules are available to add more genotyped data to the database .
 
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/architecture_strexplorer.png)
 
 STR Explorer is publically available at []. Comprehensive documentation of the API can be accessed on the main page. Fork the project on github. 
 
 To access repeats of a list of genes of your interest, try the following: 
 
-![](https://raw.githubusercontent.com/merenlin/mucin_poster/main/img/main_figure.png) [screenshot of usage]
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/architecture_strexplorer.png) [screenshot of usage]
 
 
 # Future work
