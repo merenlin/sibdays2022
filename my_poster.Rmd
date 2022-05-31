@@ -1,6 +1,6 @@
 ---
 title: >
- STR Explorer - workflow for genome-wide association studies based on short tandem repeats
+ STR Explorer - create your own workflow for personalized medical research with STRs.
 author:
   - name: Oxana (Sachenkova) Lundström
     affiliation: 1
@@ -18,33 +18,47 @@ date: "`r Sys.Date()`"
 output:
   betterposter::poster_better:
     # Optional styling arguments
-    hero_background: "#1071e5"
-    accent_color: "#e81313"
+    hero_background: "#457b9d"
+    accent_color: "#1d3557"
     hero_color: "#FFFFFF"
-    logo: "https://yt3.ggpht.com/ytc/AAUvwnjGteYx8k6MAssnCXuvUKVwHYKOlapDEioYv5lGrg=s88-c-k-c0x00ffffff-no-rj"
+    logo: ""
     # See betterposter::qrcode_options() for help
     qrcode:
-      text: "https://github.com/merenlin/mucin_poster"
+      text: "https://github.com/merenlin/sibdays2022"
       size: "250"
     mathjax: false
     # Generic rmarkdown arguments
     highlight: tango
     self_contained: true
 references:
-  - id: bychkovetal2018
+  - id: guinney2015
     title: Deep learning based tissue analysis predicts outcome in colorectal cancer.
     author:
-    - family: Bychkovetal
-      given: D.
-    container-title: Scientific Reports
-    volume: 8
-    URL: 'https://www.nature.com/articles/s41598-018-21758-3'
-    DOI: 10.1038/s41598-018-21758-3 
+    - family: Guinney
+      given: 
+    container-title:  Nature Medicine
+    volume: 21
+    URL: 'https://www.nature.com/articles/nm.3967'
+    DOI: 10.1038/nm.3967 
     publisher:  Nature Publishing Group
-    page: no. 1
+    page: no. 1350
     type: article-journal
     issued:
-      year: 2018
+      year: 2015
+  - id: mousavi2019
+    title: Profiling the genome-wide landscape of tandem repeat expansions
+    author:
+    - family: Mousavi
+      given: Nima
+    container-title: Nucleic Acids Research
+    volume: 47
+    URL: 'https://doi.org/10.1093/nar/gkz501'
+    DOI: 10.1093/nar/gkz501
+    publisher:  Oxford Academic
+    page: e90
+    type: article-journal
+    issued:
+      year: 2019
   - id: tcga2012
     title: Comprehensive molecular characterization of human colon and rectal cancer
     author:
@@ -59,17 +73,21 @@ references:
     type: article-journal
     issued:
       year: 2012
-  - id: cptac2020
-    title: Data from the Clinical Proteomic Tumor Analysis Consortium Colon Adenocarcinoma collection
-    author:
-    - family: National Cancer Institute Clinical Proteomic Tumor Analysis Consortium 
-      given: (CPTAC)
-    container-title: The Cancer Imaging Archive.
-    URL: 'https://doi.org/10.7937/TCIA.YZWQ-ZZ63'
-    DOI: 10.1038/nature11252 
+  - id: schaper2015
+    title: TRAL, tandem repeat annotation library
+    author: 
+    - family: Schaper
+      given: Elke
+    container-title: Bioinformatics
+    URL: 'https://doi.org/10.1093/bioinformatics/btv306'
+    DOI: 10.1093/bioinformatics/btv306 
+    issue: 18
+    publisher: Oxford Academic
+    page: 3051–3053
+    type: article-journal
     issued:
-      year: 2020      
-
+      year: 2015
+      
 ---
 
 ```{css echo=FALSE}
@@ -94,11 +112,10 @@ html {
 
 # Pipeline to systematically search for **short tandem repeat (STR) biomarkers** in different medical conditions. 
 
-## Create your own workflow for personalized medicine research with STRs.
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/main_illustration.png)
 
-![](https://raw.githubusercontent.com/merenlin/mucin_poster/main/img/main_figure.png)
+### Fork the project on github to customize the workflow or use the current version at [**str-explorer.herokuapp.com**](str-explorer.herokuapp.com).
 
-### Fork the project on github 
 </div>
 
 
@@ -110,7 +127,7 @@ html {
 
 Microsatellite sequences are short tandem repeats(STRs) of two to six nucleotides. They are known to be hypervariable due to the accumulation of length mutations by intra-allelic polymerase slippage on microsatellite sequence during replication.
 
-Current evidence suggests that STRs play an important role in cancer and other diseases. In colorectal cancer(CRC) variation in STR regions have been shown to influence protein-expression levels and increase tumor progression (Contente et al. 2002). The instability of microsatellite regions (MSI marker) is used by clinicians today to classify CRC tumors into different groups. This marker includes only five microsatellite regions and doesn’t exploit the whole variety of this phenomena.
+Current evidence suggests that STRs play an important role in cancer and other diseases. In colorectal cancer(CRC) variation in STR regions have been shown to influence protein-expression levels and increase tumor progression. The instability of microsatellite regions (**MSI marker**) is used by clinicians today to classify CRC tumors into different groups(@guinney2015). This marker includes only five microsatellite regions and doesn’t exploit the whole variety of this phenomena.
 
 Currently it is unknown whether distinct cancer groups exhibit distinct patterns of STR variation and in what CRC-related functional pathways STRs are involved.
 
@@ -118,9 +135,9 @@ Currently it is unknown whether distinct cancer groups exhibit distinct patterns
 # What?
 
 STRs have been poorly studied until very recently due to their highly polymorphic nature which complicates their annotation. Moreover, genotyping and analyzing STR variants involves large amounts of data and working with many different biological data formats. 
-We have developed a pipeline to systematically search for STR biomarkers in colorectal cancer that can be easily adapted for similar studies in other medical conditions. Our pipeline is the first building block towards a workflow for personalised medicine approach through STRs.
+We have developed a pipeline to systematically search for STR biomarkers in **colorectal cancer** that can be easily adapted for similar studies in other medical conditions. Our pipeline is the first building block towards a workflow for **personalized medicine** approach through STRs.
  
-
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/uni_logos.png)
 </div>
 
 
@@ -131,31 +148,30 @@ We have developed a pipeline to systematically search for STR biomarkers in colo
 
 ### STR genotyping workflow
 
-The statistical framework TRAL  (Schaper 2015) have been used to find STRs in human reference genome. We share the logic behind creating a genotyping panel relevant for cancer research and how we arrived at the microsatellite panel we use today. These inferred STRs have been further genotyped on more than 400 genomes from patients with colorectal cancer available to us through the TCGA (The Cancer Genome Atlas Network 2012).
+The statistical framework **TRAL** (@schaper2015) have been used to find STRs in human reference genome. These inferred STRs have been further genotyped using **GangSTR** (@mousavi2019) on more than 400 genomes from patients with colorectal cancer available to us through the TCGA [@tcga2012]. Our pipeline then filters genotyped calls on sequencing quality, read coverage and ML estimate of GangSTR and transforms the vcf call files into records in our relational database. 
 
-![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/genotyping_flowchart.png) 
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/genotyping_flowchart.png)
+
 # Where?
 
 ### REST API
 
  The results are presented as a relational database with programmatic access through a REST-full API, - STR Explorer. Additional Python modules are available to add more genotyped data to the database .
-
 ![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/architecture_strexplorer.png)
 
-STR Explorer is publically available at []. Comprehensive documentation of the API can be accessed on the main page. Fork the project on github. 
+Here is the example of usage maybe. 
 
-To access repeats of a list of genes of your interest, try the following: 
+```
+This text is displayed verbatim / preformatted
+This text is displayed verbatim / preformatted
+This text is displayed verbatim / preformatted
+This text is displayed verbatim / preformatted
 
-![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/architecture_strexplorer.png) [screenshot of usage]
+```
 
-
-# Future work
-
-Next step is to combine STR annotations from STR Explorer with gene expression analysis and other clinically relevant data to perform a genome-wide association study (GWAS) on STRs in colorectal cancer as a case study. The inferred STR risk variants can later be validated as novel RNA and protein targets, which will serve as additional information for patient risk stratification and therapy-response prediction.
-
-# References
 
 </div>
+# References
 
 
 
