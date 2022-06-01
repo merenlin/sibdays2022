@@ -12,7 +12,7 @@ author:
   - name: Maria Anisimova
     affiliation: 2
 affiliation:
-  - Stockholm University
+  - Stockholm University, Sweden
   - Institute of Applied Simulations, ZHAW Wädenswil
 date: "`r Sys.Date()`"
 output:
@@ -93,7 +93,12 @@ references:
 ```{css echo=FALSE}
 /* Adjust space at top of #hero (center panel) */
 html {
-  font-size: 32px;
+  font-family: PT Sans;
+  font-size: 34px;
+}
+
+h1,h2,h3  {
+ color: #457b9d;
 }
 #hero {
   padding-top: 5%;
@@ -146,30 +151,17 @@ We have developed a pipeline to systematically search for STR biomarkers in **co
 <!-- Right bar -->
 # How? 
 
-### STR genotyping workflow
+## STR genotyping workflow
 
 The statistical framework **TRAL** (@schaper2015) have been used to find STRs in human reference genome. These inferred STRs have been further genotyped using **GangSTR** (@mousavi2019) on more than 400 genomes from patients with colorectal cancer available to us through the TCGA [@tcga2012]. Our pipeline then filters genotyped calls on sequencing quality, read coverage and ML estimate of GangSTR and transforms the vcf call files into records in our relational database. 
 
 ![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/genotyping_flowchart.png)
 
-# Where?
 
-### REST API
+## REST API
 
- The results are presented as a relational database with programmatic access through a REST-full API, - STR Explorer. Additional Python modules are available to add more genotyped data to the database .
-![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/architecture_strexplorer.png)
-
-Here is the example of usage maybe. 
-
-```
-This text is displayed verbatim / preformatted
-This text is displayed verbatim / preformatted
-This text is displayed verbatim / preformatted
-This text is displayed verbatim / preformatted
-
-```
-
-
+ The results are presented as a relational database with programmatic access through a REST-full API, - STR Explorer. Additional Python modules are available to add more genotyped data to the database. Future plans include creating of an interactive dashboard to visualize and analyse results. 
+![](https://raw.githubusercontent.com/merenlin/sibdays2022/main/img/acrhitecture_strexplorer.png)
 </div>
 # References
 
